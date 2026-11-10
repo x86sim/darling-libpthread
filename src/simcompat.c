@@ -22,4 +22,4 @@ EXPORT int pthread_install_workgroup_functions_np(const void* functions)
 	return 0;
 }
 
-// x86Code: _pthread_workqueue_add_cooperativethreads is in pthread.c (cooperative pool)
+// x86Sim: _pthread_workqueue_add_cooperativethreads is in pthread.c (cooperative pool)

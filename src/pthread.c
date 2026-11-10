@@ -2320,7 +2320,7 @@ _pthread_wqthread_priority(int flags)
 	if (flags & WQ_FLAG_THREAD_OVERCOMMIT) {
 		pp |= _PTHREAD_PRIORITY_OVERCOMMIT_FLAG;
 	}
-	// x86Code: a cooperative pool thread (XNU's WQ_FLAG_THREAD_COOPERATIVE upcall flag) hands libdispatch a
+	// x86Sim: a cooperative pool thread (XNU's WQ_FLAG_THREAD_COOPERATIVE upcall flag) hands libdispatch a
 	// priority with _PTHREAD_PRIORITY_COOPERATIVE_FLAG, so it drains the cooperative root queue of its QoS
 	if (flags & 0x01000000 /* WQ_FLAG_THREAD_COOPERATIVE */) {
 		pp |= 0x08000000u /* _PTHREAD_PRIORITY_COOPERATIVE_FLAG */;
@@ -2643,7 +2643,7 @@ _pthread_workqueue_addthreads(int numthreads, pthread_priority_t priority)
 	return res;
 }
 
-// x86Code: the cooperative pool (Swift concurrency's global executor). Ask for cooperative threads as XNU's
+// x86Sim: the cooperative pool (Swift concurrency's global executor). Ask for cooperative threads as XNU's
 // libpthread does (WQOPS_QUEUE_REQTHREADS2); libsystem_kernel's workqueue starts them with
 // WQ_FLAG_THREAD_COOPERATIVE and _pthread_wqthread_priority passes _PTHREAD_PRIORITY_COOPERATIVE_FLAG on to
 // libdispatch. simcompat.c used to request ordinary threads: they drained the plain root queue of that QoS, and
